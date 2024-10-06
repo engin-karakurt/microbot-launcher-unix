@@ -1,5 +1,6 @@
 package de.enginkarakurt.microbotlauncherlinux;
 
+import de.enginkarakurt.microbotlauncherlinux.util.HttpUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
