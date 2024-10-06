@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class MicrobotLauncherLinux {
     public static void main(String[] args) {
-        String version = "1.0";
+        String version = "1.0.0";
         System.out.println("microbot-launcher-linux v" + version);
 
         System.out.println("Checking releases...");
