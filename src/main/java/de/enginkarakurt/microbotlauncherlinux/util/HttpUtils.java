@@ -17,7 +17,6 @@ public class HttpUtils {
                 .GET()
                 .build();
 
-        httpResponse = null;
         try {
             httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
