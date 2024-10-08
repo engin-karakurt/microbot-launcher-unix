@@ -10,7 +10,7 @@ Step 2: Launch using Terminal: ```java -jar microbot-launcher-linux.jar```
 
 Step 3: Enjoy!
 
-## Using Jagex Account
+## Using a Jagex Account
 You can use this with a Jagex Account, however you currently need to do some manual steps:
 
 Step 1: 
