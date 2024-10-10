@@ -21,7 +21,7 @@ Obtain a credentials.properties file from a RuneLite launcher. This can be from 
 You can also do this on Linux using the third-party [Bolt Launcher](https://github.com/Adamcake/Bolt/):
 Step 1: Install Bolt Launcher from Flathub, see the link above for more info.
 
-Step 2: After logging in in the Bolt Launcher, select RuneLite as the Game client.
+Step 2: After logging into Bolt Launcher, select RuneLite as the Game client.
 
 Step 3: Go to the Application Options and click on Configure RuneLite
 
