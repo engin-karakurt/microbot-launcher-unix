@@ -83,7 +83,7 @@ public class VersionUtils {
                 isNewer = latestVersion.get().compareTo(localVersion) > 0;
 
                 if(isNewer) {
-                    System.out.println("v" + localVersion + " is outdated! Deleting...\n");
+                    System.out.println("v" + localVersion + " is outdated! Deleting...");
 
                     if(file.delete()) {
                         System.out.println("Successfully deleted the outdated version!\n");

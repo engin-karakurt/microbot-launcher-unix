@@ -40,7 +40,7 @@ public class FileUtils {
                     fileOutputStream.close();
                     inputStream.close();
 
-                    System.out.println("Download completed!");
+                    System.out.println("Download completed!\n");
 
                     return assetToDownload.get("name").toString();
 
@@ -55,7 +55,7 @@ public class FileUtils {
     }
 
     public static void runJarFile(String fileName) {
-        System.out.println("\n--- Execute the .jar... ---");
+        System.out.println("--- Execute the .jar... ---");
         System.out.printf("Attempting to run %s...%n", fileName);
         try {
             Runtime.getRuntime().exec(
