@@ -41,6 +41,3 @@ Now when you start Microbot through the Launcher again, it should work with your
 
 ## Contributions
 Feel free to submit a pull request if you have any cool changes!
-
-
-Hope you enjoy! :)
