@@ -74,9 +74,7 @@ public class VersionUtils {
         else {
             AtomicReference<ComparableVersion> latestVersion = new AtomicReference<>();
 
-            VersionUtils.getLatestRelease().ifPresent(latestRelease -> {
-                latestVersion.set(new ComparableVersion(latestRelease.get("tag_name").toString()));
-            });
+            VersionUtils.getLatestRelease().ifPresent(latestRelease -> latestVersion.set(new ComparableVersion(latestRelease.get("tag_name").toString())));
 
             ComparableVersion localVersion;
 
@@ -85,8 +83,11 @@ public class VersionUtils {
                 isNewer = latestVersion.get().compareTo(localVersion) > 0;
 
                 if(isNewer) {
-                    System.out.println("v" + localVersion + " is outdated! Deleting...");
-                    file.delete();
+                    System.out.println("v" + localVersion + " is outdated! Deleting...\n");
+
+                    if(file.delete()) {
+                        System.out.println("Successfully deleted the outdated version!\n");
+                    }
                 }
             }
         }
