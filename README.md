@@ -5,18 +5,16 @@ microbot-launcher-linux is a Linux Launcher for [Microbot](https://github.com/ch
 ## How to use
 NOTE: Requires Java 11 (Just like Microbot)
 
-Step 1: Put the Launcher in the folder where you want to have the files organized.
+- Put the Launcher in the folder where you want to have the files organized.
 
-Step 2: Launch using Terminal: ```java -jar microbot-launcher-linux.jar```
+- Launch using Terminal: ```java -jar microbot-launcher-linux.jar```
 
-Step 3: Enjoy!
+- Enjoy!
 
 ## Using a Jagex Account
 You can use this with a Jagex Account, however you currently need to do some manual steps:
 
-- Obtain a `credentials.properties` file from a RuneLite launcher. This can be from a Windows or Mac launcher aswell, see:
-
-[RuneLite - Using Jagex Accounts](https://github.com/runelite/runelite/wiki/Using-Jagex-Accounts).
+- Obtain a `credentials.properties` file from a RuneLite launcher. This can be from a Windows or Mac launcher aswell, see [here](https://github.com/runelite/runelite/wiki/Using-Jagex-Accounts).
 
 You can however do this directly on Linux using the third-party [Bolt Launcher](https://github.com/Adamcake/Bolt/):
 
@@ -32,7 +30,7 @@ You can however do this directly on Linux using the third-party [Bolt Launcher](
 
 - Copy the `credentials.properties` file in to the `.runelite` folder at the following path (If you don't have a .runelite folder there, make sure to launch Microbot through the launcher once): `/home/YOUR-USERNAME/.runelite/`
 
-Now when you start Microbot through the Launcher again, it should work with your Jagex Account!
+- Now when you start Microbot through the Launcher again, it should work with your Jagex Account!
 
 NOTE: There are probably other methods aswell. Feel free to share them!
 
