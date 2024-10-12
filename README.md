@@ -5,7 +5,7 @@ microbot-launcher-unix is an unofficial Linux & macOS Launcher for [Microbot](ht
 ## Features
 - Automatically downloads the latest non-nightly .jar file from GitHub releases & puts it into a /jars directory which gets created in the same folder as the launcher
 
-- Deletes older versions and checks for newer ones
+- Deletes old microbot versions and checks for new ones
   
 - Launches the .jar file for you
 
