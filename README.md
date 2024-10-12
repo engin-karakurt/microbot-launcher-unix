@@ -1,6 +1,6 @@
-# microbot-launcher-linux
+# microbot-launcher-unix
 
-microbot-launcher-linux is a Linux Launcher for [Microbot](https://github.com/chsami/microbot)!
+microbot-launcher-unix is a Linux & macOS Launcher for [Microbot](https://github.com/chsami/microbot)!
 
 ## How to use
 NOTE: Requires Java 11 (Just like Microbot)
