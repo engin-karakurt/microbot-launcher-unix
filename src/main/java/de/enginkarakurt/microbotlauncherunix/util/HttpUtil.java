@@ -23,7 +23,6 @@ public class HttpUtil {
             throw new RuntimeException(e);
         }
 
-
         return httpResponse;
     }
 }

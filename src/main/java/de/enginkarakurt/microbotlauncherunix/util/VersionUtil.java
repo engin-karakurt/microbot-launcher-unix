@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class VersionUtil {
 
-    public static Optional<JSONObject> getLatestRelease() {
+    private static Optional<JSONObject> getLatestRelease() {
         String releasesResponseBody = HttpUtil.sendRequestAndReceiveResponse("https://api.github.com/repos/chsami/microbot/releases").body();
         ArrayList<JSONObject> jsonObjects = new ArrayList<>();
 
@@ -31,7 +31,7 @@ public class VersionUtil {
         return Optional.empty();
     }
 
-    public static String getAssetsUrl() {
+    private static String getAssetsUrl() {
         if (VersionUtil.getLatestRelease().isPresent()) {
             JSONObject latestRelease = VersionUtil.getLatestRelease().get();
 
