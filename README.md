@@ -2,6 +2,13 @@
 
 microbot-launcher-unix is an unofficial Linux & macOS Launcher for [Microbot](https://github.com/chsami/microbot)!
 
+## Table of contents
+- [Features](#features)
+- [How to use](#how-to-use)
+- [Using a Jagex Account](#using-a-jagex-account)
+- [Contributions](#contributions)
+- [Support me](#support-me)
+
 ## Features
 - Automatically downloads the latest non-nightly .jar file from GitHub releases & puts it into a /jars directory which gets created in the same folder as the launcher
 
