@@ -10,20 +10,20 @@ import java.net.URI;
 import java.net.URL;
 import java.util.Objects;
 
-public class FileUtils {
+public class FileUtil {
 
     public static void setupDirectory() {
         if (new File("jars").mkdirs()) {
-            System.out.println("\n--- Setup directory... ---");
-            System.out.println("Creating jars folder...\n");
+            System.out.println("--- Setup directory ---");
+            System.out.println("Creating jars folder...");
         }
     }
 
     public static String updateAndRetrieveLatestVersion() {
-        JSONObject assetToDownload = Objects.requireNonNull(VersionUtils.getAssetToDownload());
+        JSONObject assetToDownload = Objects.requireNonNull(VersionUtil.getAssetToDownload());
 
-        if(VersionUtils.isNewerVersion()) {
-                System.out.println("--- Download release... ---");
+        if(VersionUtil.checkVersion() > 1 || getFilesFromJarsDir().length < 1) {
+                System.out.println("Download new release...");
 
                 try {
                     URL url = new URI(assetToDownload.get("browser_download_url").toString()).toURL();
@@ -41,21 +41,21 @@ public class FileUtils {
                     fileOutputStream.close();
                     inputStream.close();
 
-                    System.out.println("Download completed!\n");
+                    System.out.println("Download completed!");
 
                     return assetToDownload.get("name").toString();
                 } catch (Exception ex) {
-                    System.out.println("Download Failed! \n");
+                    System.out.println("Download Failed! ");
                 }
         } else {
-            System.out.println("You are up-to-date!\n");
+            System.out.println("You are up-to-date!");
         }
 
         return Objects.requireNonNull(new File(System.getProperty("user.dir") + "/jars/" + assetToDownload.get("name").toString()).getName());
     }
 
     public static void runJarFile(String fileName) {
-        System.out.println("--- Execute the .jar... ---");
+        System.out.println("--- Execute the .jar ---");
         System.out.printf("Attempting to run %s...%n", fileName);
         try {
             Runtime.getRuntime().exec(
@@ -66,5 +66,9 @@ public class FileUtils {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static File[] getFilesFromJarsDir() {
+        return new File(System.getProperty("user.dir") + "/jars").listFiles();
     }
 }

@@ -6,7 +6,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class HttpUtils {
+public class HttpUtil {
 
     public static String sendRequestAndReceiveResponseBody(String url) {
         HttpResponse<String> httpResponse;

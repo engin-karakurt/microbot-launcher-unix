@@ -10,10 +10,10 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class VersionUtils {
+public class VersionUtil {
 
     public static Optional<JSONObject> getLatestRelease() {
-        String releasesResponseBody = HttpUtils.sendRequestAndReceiveResponseBody("https://api.github.com/repos/chsami/microbot/releases");
+        String releasesResponseBody = HttpUtil.sendRequestAndReceiveResponseBody("https://api.github.com/repos/chsami/microbot/releases");
         ArrayList<JSONObject> jsonObjects = new ArrayList<>();
 
         JSONArray jsonArray = new JSONArray(releasesResponseBody);
@@ -32,9 +32,8 @@ public class VersionUtils {
     }
 
     public static String getAssetsUrl() {
-        if (VersionUtils.getLatestRelease().isPresent()) {
-            System.out.println("--- Get latest release... ---");
-            JSONObject latestRelease = VersionUtils.getLatestRelease().get();
+        if (VersionUtil.getLatestRelease().isPresent()) {
+            JSONObject latestRelease = VersionUtil.getLatestRelease().get();
 
             return latestRelease.get("assets_url").toString();
         } else {
@@ -43,7 +42,7 @@ public class VersionUtils {
     }
 
     public static JSONObject getAssetToDownload() {
-        String assetsResponseBody = Objects.requireNonNull(HttpUtils.sendRequestAndReceiveResponseBody(getAssetsUrl()));
+        String assetsResponseBody = Objects.requireNonNull(HttpUtil.sendRequestAndReceiveResponseBody(getAssetsUrl()));
         ArrayList<JSONObject> assetsJsonObjects = new ArrayList<>();
 
             JSONArray assets = new JSONArray(assetsResponseBody);
@@ -55,44 +54,41 @@ public class VersionUtils {
             for (JSONObject assetsJsonObject : assetsJsonObjects) {
                 if (assetsJsonObject.get("name").toString().toLowerCase().contains("microbot") && assetsJsonObject.get("name").toString().toLowerCase().contains(".jar")) {
                     System.out.printf("Latest release: %s%n", assetsJsonObject.get("name").toString());
-                    File[] filesInJarsDir = getFilesFromJarsDir();
-                    for (File file : filesInJarsDir) {
-                        if(file.getName().toLowerCase().equals(assetsJsonObject.get("name").toString())) {
-                            System.out.println("Latest release is already downloaded!\n");
-                        }
-                    }
-                        return assetsJsonObject;
+                    return assetsJsonObject;
                 }
-        }
+            }
 
         return null;
     }
 
-    public static boolean isNewerVersion() {
-        boolean isNewer = false;
-        File[] filesInJarsDir = getFilesFromJarsDir();
+    public static int checkVersion() {
+        System.out.println("--- Checking version ---");
+        int isNewer = -1;
+
+        File[] filesInJarsDir = FileUtil.getFilesFromJarsDir();
 
         if(filesInJarsDir == null || filesInJarsDir.length < 1) {
-            isNewer = true;
+            isNewer = 1;
         }
         else {
             AtomicReference<ComparableVersion> latestVersion = new AtomicReference<>();
 
-            VersionUtils.getLatestRelease().ifPresent(latestRelease -> latestVersion.set(new ComparableVersion(latestRelease.get("tag_name").toString())));
+            VersionUtil.getLatestRelease().ifPresent(latestRelease -> latestVersion.set(new ComparableVersion(latestRelease.get("tag_name").toString())));
 
             ComparableVersion localVersion;
 
-            System.out.println("Checking for outdated versions...");
             for (File file : filesInJarsDir) {
                 if(file.getName().toLowerCase().contains(".jar") && file.getName().toLowerCase().contains("microbot")) {
+                    // Extract version from filename
                     localVersion = new ComparableVersion(file.getName().split("-")[1].replace(".jar","").trim());
-                    isNewer = latestVersion.get().compareTo(localVersion) > 0;
 
-                    if(isNewer) {
+                    isNewer = isVersionNewer(latestVersion.get(), localVersion);
+
+                    if(isNewer > 0) {
                         System.out.println("v" + localVersion + " is outdated! Deleting...");
 
                         if(file.delete()) {
-                            System.out.println("Successfully deleted the outdated version!\n");
+                            System.out.println("Successfully deleted the outdated version!");
                         }
                     }
                 }
@@ -102,7 +98,7 @@ public class VersionUtils {
         return isNewer;
     }
 
-    public static File[] getFilesFromJarsDir() {
-        return new File(System.getProperty("user.dir") + "/jars").listFiles();
+    public static int isVersionNewer(ComparableVersion version1, ComparableVersion version2) {
+        return version1.compareTo(version2);
     }
 }
