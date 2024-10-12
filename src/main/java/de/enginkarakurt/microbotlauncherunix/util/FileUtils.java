@@ -1,4 +1,4 @@
-package de.enginkarakurt.microbotlauncherlinux.util;
+package de.enginkarakurt.microbotlauncherunix.util;
 
 import org.json.JSONObject;
 
@@ -8,13 +8,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
+import java.util.Objects;
 
 public class FileUtils {
 
     public static void setupDirectory() {
-        if (new File("microbot").mkdirs()) {
+        if (new File("jars").mkdirs()) {
             System.out.println("\n--- Setup directory... ---");
-            System.out.println("Creating Microbot folder...");
+            System.out.println("Creating jars folder...");
         }
     }
 
@@ -28,7 +29,7 @@ public class FileUtils {
                     URL url = new URI(assetToDownload.get("browser_download_url").toString()).toURL();
 
                     InputStream inputStream = url.openStream();
-                    FileOutputStream fileOutputStream = new FileOutputStream("microbot/" + assetToDownload.get("name").toString());
+                    FileOutputStream fileOutputStream = new FileOutputStream("jars/" + assetToDownload.get("name").toString());
 
                     byte[] bytes = new byte[1024];
                     int len;
@@ -46,12 +47,11 @@ public class FileUtils {
 
                 } catch (Exception ex) {
                     System.out.println("Download Failed! \n");
-                    ex.printStackTrace();
                 }
             }
         }
 
-        return new File(System.getProperty("user.dir") + "/microbot").listFiles()[0].getName();
+        return Objects.requireNonNull(new File(System.getProperty("user.dir") + "/jars").listFiles())[0].getName();
     }
 
     public static void runJarFile(String fileName) {
@@ -61,7 +61,7 @@ public class FileUtils {
             Runtime.getRuntime().exec(
                     String.format("java -jar %s", fileName),
                     null,
-                    new File(System.getProperty("user.dir") + "/microbot")
+                    new File(System.getProperty("user.dir") + "/jars")
             );
         } catch (IOException e) {
             throw new RuntimeException(e);

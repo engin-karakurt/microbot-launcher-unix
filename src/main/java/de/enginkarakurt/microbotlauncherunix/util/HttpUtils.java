@@ -1,4 +1,4 @@
-package de.enginkarakurt.microbotlauncherlinux.util;
+package de.enginkarakurt.microbotlauncherunix.util;
 
 import java.io.IOException;
 import java.net.URI;

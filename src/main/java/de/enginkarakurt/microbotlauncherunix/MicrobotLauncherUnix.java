@@ -1,16 +1,16 @@
-package de.enginkarakurt.microbotlauncherlinux;
+package de.enginkarakurt.microbotlauncherunix;
 
-import de.enginkarakurt.microbotlauncherlinux.util.FileUtils;
+import de.enginkarakurt.microbotlauncherunix.util.FileUtils;
 
-public class MicrobotLauncherLinux {
-    public static final String VERSION = "1.1.1";
+public class MicrobotLauncherUnix {
+    public static final String VERSION = "1.2.0";
 
     public static void main(String[] args) {
        runMicrobotLauncher();
     }
 
     private static void runMicrobotLauncher() {
-        System.out.println("--- microbot-launcher-linux v" + VERSION + " ---\n");
+        System.out.println("--- microbot-launcher-unix v" + VERSION + " ---\n");
 
         // Setup Directory
         FileUtils.setupDirectory();

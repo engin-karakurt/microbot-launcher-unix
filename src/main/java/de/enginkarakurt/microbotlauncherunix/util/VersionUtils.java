@@ -1,4 +1,4 @@
-package de.enginkarakurt.microbotlauncherlinux.util;
+package de.enginkarakurt.microbotlauncherunix.util;
 
 import org.apache.maven.artifact.versioning.ComparableVersion;
 import org.json.JSONArray;
@@ -66,7 +66,7 @@ public class VersionUtils {
 
     public static boolean isNewerVersion() {
         boolean isNewer = false;
-        File[] filesInFolder = new File(System.getProperty("user.dir") + "/microbot").listFiles();
+        File[] filesInFolder = new File(System.getProperty("user.dir") + "/jars").listFiles();
 
         if(filesInFolder == null || filesInFolder.length < 1) {
             isNewer = true;
