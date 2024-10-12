@@ -35,7 +35,7 @@ You can however do this directly on Linux using the third-party [Bolt Launcher](
 NOTE: There are probably other methods aswell. Feel free to share them!
 
 ## Features
-- Automatically downloads the latest non-nightly .jar file from GitHub releases & puts it into a /microbot directory which gets created in the same folder as the launcher. Also deletes older versions and checks for newer ones.
+- Automatically downloads the latest non-nightly .jar file from GitHub releases & puts it into a /jars directory which gets created in the same folder as the launcher. Also deletes older versions and checks for newer ones.
 - Launches the .jar file for you
 
 ## Contributions
