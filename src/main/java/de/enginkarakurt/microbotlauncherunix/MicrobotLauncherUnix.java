@@ -3,7 +3,7 @@ package de.enginkarakurt.microbotlauncherunix;
 import de.enginkarakurt.microbotlauncherunix.util.FileUtils;
 
 public class MicrobotLauncherUnix {
-    public static final String VERSION = "1.2.0";
+    public static final String VERSION = "1.3.0";
 
     public static void main(String[] args) {
        runMicrobotLauncher();
@@ -15,8 +15,8 @@ public class MicrobotLauncherUnix {
         // Setup Directory
         FileUtils.setupDirectory();
 
-        // Download file
-        String fileName = FileUtils.downloadFile();
+        // Update and retrieve latest version
+        String fileName = FileUtils.updateAndRetrieveLatestVersion();
 
         // Run file
         FileUtils.runJarFile(fileName);
