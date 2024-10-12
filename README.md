@@ -39,7 +39,9 @@ You can however do this directly on Linux using the third-party [Bolt Launcher](
 NOTE: There are probably other methods aswell. Feel free to share them!
 
 ## Contributions
-Feel free to submit a pull request if you have worked on something and think it should be implemented! Also take a look at the Issues tab for different tasks to solve (Features, Bugs) and suggest features / report bugs if you encounter anything that could be improved!
+Feel free to submit a pull request to the dev branch if you have worked on something (Feature / Bug)! 
+
+Also take a look at the Issues tab for things to solve and suggest features / report bugs if you encounter anything that could be improved!
 
 ## Support me
 If you want to support me, you can do so by sending me a donation.
