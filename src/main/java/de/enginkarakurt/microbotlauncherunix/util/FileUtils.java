@@ -15,15 +15,15 @@ public class FileUtils {
     public static void setupDirectory() {
         if (new File("jars").mkdirs()) {
             System.out.println("\n--- Setup directory... ---");
-            System.out.println("Creating jars folder...");
+            System.out.println("Creating jars folder...\n");
         }
     }
 
-    public static String downloadFile() {
+    public static String updateAndRetrieveLatestVersion() {
+        JSONObject assetToDownload = Objects.requireNonNull(VersionUtils.getAssetToDownload());
+
         if(VersionUtils.isNewerVersion()) {
-            JSONObject assetToDownload = VersionUtils.getAssetToDownload();
-            if (assetToDownload != null) {
-                System.out.println("\n--- Download release... ---");
+                System.out.println("--- Download release... ---");
 
                 try {
                     URL url = new URI(assetToDownload.get("browser_download_url").toString()).toURL();
@@ -44,14 +44,14 @@ public class FileUtils {
                     System.out.println("Download completed!\n");
 
                     return assetToDownload.get("name").toString();
-
                 } catch (Exception ex) {
                     System.out.println("Download Failed! \n");
                 }
-            }
+        } else {
+            System.out.println("You are up-to-date!\n");
         }
 
-        return Objects.requireNonNull(new File(System.getProperty("user.dir") + "/jars").listFiles())[0].getName();
+        return Objects.requireNonNull(new File(System.getProperty("user.dir") + "/jars/" + assetToDownload.get("name").toString()).getName());
     }
 
     public static void runJarFile(String fileName) {

@@ -43,10 +43,9 @@ public class VersionUtils {
     }
 
     public static JSONObject getAssetToDownload() {
-        String assetsResponseBody = HttpUtils.sendRequestAndReceiveResponseBody(getAssetsUrl());
+        String assetsResponseBody = Objects.requireNonNull(HttpUtils.sendRequestAndReceiveResponseBody(getAssetsUrl()));
         ArrayList<JSONObject> assetsJsonObjects = new ArrayList<>();
 
-        if (assetsResponseBody != null) {
             JSONArray assets = new JSONArray(assetsResponseBody);
             assets.forEach(jsonObject -> {
                 JSONObject obj = (JSONObject) jsonObject;
@@ -54,11 +53,16 @@ public class VersionUtils {
             });
 
             for (JSONObject assetsJsonObject : assetsJsonObjects) {
-                if (assetsJsonObject.get("name").toString().contains("microbot") && assetsJsonObject.get("name").toString().contains(".jar")) {
-                    System.out.println("Latest release: " + assetsJsonObject.get("name").toString());
-                    return assetsJsonObject;
+                if (assetsJsonObject.get("name").toString().toLowerCase().contains("microbot") && assetsJsonObject.get("name").toString().toLowerCase().contains(".jar")) {
+                    System.out.printf("Latest release: %s%n", assetsJsonObject.get("name").toString());
+                    File[] filesInJarsDir = getFilesFromJarsDir();
+                    for (File file : filesInJarsDir) {
+                        if(file.getName().toLowerCase().equals(assetsJsonObject.get("name").toString())) {
+                            System.out.println("Latest release is already downloaded!\n");
+                        }
+                    }
+                        return assetsJsonObject;
                 }
-            }
         }
 
         return null;
@@ -66,9 +70,9 @@ public class VersionUtils {
 
     public static boolean isNewerVersion() {
         boolean isNewer = false;
-        File[] filesInFolder = new File(System.getProperty("user.dir") + "/jars").listFiles();
+        File[] filesInJarsDir = getFilesFromJarsDir();
 
-        if(filesInFolder == null || filesInFolder.length < 1) {
+        if(filesInJarsDir == null || filesInJarsDir.length < 1) {
             isNewer = true;
         }
         else {
@@ -78,20 +82,27 @@ public class VersionUtils {
 
             ComparableVersion localVersion;
 
-            for (File file : filesInFolder) {
-                localVersion = new ComparableVersion(file.getName().split("-")[1].replace(".jar","").trim());
-                isNewer = latestVersion.get().compareTo(localVersion) > 0;
+            System.out.println("Checking for outdated versions...");
+            for (File file : filesInJarsDir) {
+                if(file.getName().toLowerCase().contains(".jar") && file.getName().toLowerCase().contains("microbot")) {
+                    localVersion = new ComparableVersion(file.getName().split("-")[1].replace(".jar","").trim());
+                    isNewer = latestVersion.get().compareTo(localVersion) > 0;
 
-                if(isNewer) {
-                    System.out.println("v" + localVersion + " is outdated! Deleting...");
+                    if(isNewer) {
+                        System.out.println("v" + localVersion + " is outdated! Deleting...");
 
-                    if(file.delete()) {
-                        System.out.println("Successfully deleted the outdated version!\n");
+                        if(file.delete()) {
+                            System.out.println("Successfully deleted the outdated version!\n");
+                        }
                     }
                 }
             }
         }
 
         return isNewer;
+    }
+
+    public static File[] getFilesFromJarsDir() {
+        return new File(System.getProperty("user.dir") + "/jars").listFiles();
     }
 }
