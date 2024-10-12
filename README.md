@@ -2,6 +2,10 @@
 
 microbot-launcher-unix is a Linux & macOS Launcher for [Microbot](https://github.com/chsami/microbot)!
 
+## Features
+- Automatically downloads the latest non-nightly .jar file from GitHub releases & puts it into a /jars directory which gets created in the same folder as the launcher. Also deletes older versions and checks for newer ones.
+- Launches the .jar file for you
+
 ## How to use
 NOTE: Requires Java 11 (Just like Microbot)
 
@@ -34,9 +38,10 @@ You can however do this directly on Linux using the third-party [Bolt Launcher](
 
 NOTE: There are probably other methods aswell. Feel free to share them!
 
-## Features
-- Automatically downloads the latest non-nightly .jar file from GitHub releases & puts it into a /jars directory which gets created in the same folder as the launcher. Also deletes older versions and checks for newer ones.
-- Launches the .jar file for you
-
 ## Contributions
 Feel free to submit a pull request if you have any cool changes!
+
+## Support me
+If you want to support me, you can do so by sending me a donation.
+
+Bitcoin Wallet Address: bc1qwvel984ptpnmz02zxtjqfm0skj4adz39dwx5wv
