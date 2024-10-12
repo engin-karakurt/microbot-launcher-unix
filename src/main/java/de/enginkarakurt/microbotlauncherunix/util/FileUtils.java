@@ -15,7 +15,7 @@ public class FileUtils {
     public static void setupDirectory() {
         if (new File("jars").mkdirs()) {
             System.out.println("\n--- Setup directory... ---");
-            System.out.println("Creating jars folder...");
+            System.out.println("Creating jars folder...\n");
         }
     }
 
