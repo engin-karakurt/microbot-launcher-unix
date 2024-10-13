@@ -1,6 +1,8 @@
 # microbot-launcher-unix
 
-microbot-launcher-unix is an unofficial Linux & macOS Launcher for [Microbot](https://github.com/chsami/microbot)!
+microbot-launcher-unix is an unofficial Windows, macOS and Linux Launcher for [Microbot](https://github.com/chsami/microbot)!
+
+Although it can be used on all 3 platforms just fine, it is mainly intended for using Microbot on macOS or Linux (Hence why the -unix is in the name!). For Windows you can use the [Official Launcher](https://themicrobot.com/) too.
 
 ## Table of contents
 - [Features](#features)
@@ -30,9 +32,11 @@ NOTE: Requires Java 11 (Just like Microbot)
 ## Using a Jagex Account
 You can use this with a Jagex Account, however you currently need to do some manual steps:
 
-- Obtain a `credentials.properties` file from a RuneLite launcher. This can be from a Windows or Mac launcher aswell, see [here](https://github.com/runelite/runelite/wiki/Using-Jagex-Accounts).
+- Obtain a `credentials.properties` file from a RuneLite launcher. This can be from a Windows, macOS or Linux Launcher. 
 
-You can however do this directly on Linux using the third-party [Bolt Launcher](https://github.com/Adamcake/Bolt/):
+For Windows and macOS, see [here](https://github.com/runelite/runelite/wiki/Using-Jagex-Accounts).
+
+For Linux using the third-party [Bolt Launcher](https://github.com/Adamcake/Bolt/):
 
 - Install Bolt Launcher from Flathub, see the link above for more info.
 
